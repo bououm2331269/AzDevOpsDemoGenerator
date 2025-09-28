@@ -20,12 +20,3 @@ steps:
 - script: dotnet build src/ADOGenerator.sln --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
 
-
-# Command Line v2
-# Run a command line script using Bash on Linux and macOS and cmd.exe on Windows.
-- task: CmdLine@2
-  inputs:
-    script: # string. Required. Script. 
-  # Advanced
-    #workingDirectory: # string. Working Directory. 
-    #failOnStderr: false # boolean. Fail on Standard Error. Default: false.
