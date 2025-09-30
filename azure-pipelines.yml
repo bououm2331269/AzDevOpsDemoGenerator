@@ -2,12 +2,21 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest   # ou windows-latest si dispo
 
 variables:
   buildConfiguration: 'Release'
 
-steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
-
+jobs:
+- job: Build
+  steps:
+  - script: |
+      wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
+      chmod +x dotnet-install.sh
+      ./dotnet-install.sh --channel 8.0
+      export PATH=$HOME/.dotnet:$PATH
+      dotnet --info
+      dotnet restore
+      dotnet build --configuration $(buildConfiguration)
+      dotnet test --configuration $(buildConfiguration) --no-build
+    displayName: "Build & Test"
