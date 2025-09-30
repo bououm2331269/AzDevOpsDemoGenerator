@@ -1,6 +1,8 @@
 trigger:
 - main
-
+- task: 'UseMSStoreCLI@0
+  inputs:
+    version: 'latest'
 pool:
   vmImage: windows-latest   # ou windows-latest si dispo
 
